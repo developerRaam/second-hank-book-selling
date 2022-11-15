@@ -1,0 +1,52 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user_login%}
+<h3 class="text-center my-5">Your are already Login</h3>
+{% else %}
+<section class="container">
+<div class="card p-4 shadow-lg bg-body" style="margin-top:20px;margin-bottom:20px">
+    <div class="row">
+        <div class="col-md-5 p-3" style="background-color: #7e3baf;">
+            <div class="user_login">
+                <img class="w-100" src="{% static 'images/icon/user.png' %}" alt="">
+            </div>
+        </div>
+        <div class="col-md-7 bg-light">
+
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show text-center" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+            
+            <div class="p-4">
+                <!-- Login -->
+                <form id="login" class="mt-4" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <h2>User Login</h2>
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control mb-3" name="email" placeholder=" email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control mb-3" name="password" placeholder=" password" required>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-outline-success" type="submit" name="login" id="" value="Login">
+                    </div>
+                    <div class="mt-2">
+                        <p>Do not have an account? <a href="/register">SignUp</a> | <a href="/password-forgot">Forgot</a> </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% load static %}
+<div class="card h-100 p-2 d-none d-sm-block d-sm-none d-md-block ">
+    <h6>Category</h6>
+    <ul >
+    {% if category or sub_category %}
+      {% for cat in category %}
+       <li class="list-unstyled"><img width="10" src="{% static 'images/icon/arrow-circle-right-2x.png' %}" alt=""> {{cat.name}}</li>
+       <ul>
+          {% for sub_cat in sub_category %}
+            {% if sub_cat.cat_id.id == cat.id %}
+             <li><a href="{% url 'shop' cat_id=cat.id sub_cat_id=sub_cat.id sub_slug=sub_cat.slug %}">{{sub_cat.name}}</a></li>
+            {% endif %}
+          {% endfor %}
+       </ul>
+      {% endfor %}
+    {% endif %}
+    </ul>
+</div>
+
+
+{% comment %} Left sidebar {% endcomment %}
+
+

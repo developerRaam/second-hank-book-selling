@@ -1,0 +1,56 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+{% if user_login %}
+    <h3 class="text-center my-5">Your are already Login</h3>
+{% else %}
+<section class="container">
+    <div class="card p-4 shadow-lg bg-body" style="margin-top:20px;margin-bottom:20px">
+        <div class="row">
+
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show text-center" role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+            
+            <div class="col-md-5 p-3" style="background-color: #7e3baf;">
+                <div class="user_login">
+                    <img class="w-100" src="{% static 'images/icon/user.png' %}" alt="">
+                </div>
+            </div>
+            <div class="col-md-7 bg-light">
+                <h2>User Register</h2>
+                <form class="my-2" action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <div>
+                        <input type="text" class="form-control my-3" name="first_name" placeholder="Enter first name" required>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control my-3" name="last_name" placeholder="Enter last name" required>
+                    </div>
+                    <div>
+                        <input type="number" class="form-control my-3" name="mobile" placeholder="Enter mobile" required>
+                    </div>
+                    <div>
+                        <input type="email" class="form-control my-3" name="email" placeholder="Enter email" required>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control my-3" name="password" placeholder="Enter password" required>
+                    </div>
+                    <div>
+                        <input class="btn btn-outline-success my-3" type="submit" name="register" id="" value="Register">
+                    </div>
+                    <div class="mt-2">
+                        <p>Already have an account? <a href="/login">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endif %}
+
+{% endblock content %}

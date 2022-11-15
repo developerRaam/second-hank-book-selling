@@ -1,0 +1,57 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <style>
+        th{
+            font-size:16px
+        }
+        td{
+            font-size:14px
+        }
+    </style>
+    <div class="container py-3">
+        <h2>Ordered Items</h2>
+        <table class="table table-striped border">
+            <thead class="bg-secondary text-light">
+                <tr class="text-center ">
+                    <th width="10%">Order ID</th>
+                    <th width="20%">Image</th>
+                    <th width="30%">Name</th>
+                    {% comment %} <th width="5%">Price</th>
+                    <th width="5%">Quantity</th>
+                    <th width="5%">Payment Mode</th> {% endcomment %}
+                    <th width="5%">Payment Status</th>
+                    <th width="15%">Order Status</th>
+                    <th width="20%">Date</th>
+                    {% comment %} <th>Quantity</th> {% endcomment %}
+                </tr>
+            </thead>
+            <tbody>
+                {% if order_item %}
+                {% for data in order_item %}
+                <tr class="text-center">
+                    <td><a href="{% url 'ordered-detail' prd_id=data.0 prd_slug=data.2 %}">{{data.0}}</a></td>
+                    <td><a href="{% url 'ordered-detail' prd_id=data.0 prd_slug=data.2 %}">
+                        <img height="100" src="/images/{{data.1}}" alt="{{data.2}}"></a>
+                    </td>
+                    <td>{{data.2}}</td>
+                    {% comment %} <td>{{data.3}}</td>
+                    <td>{{data.4}}</td>
+                    <td>{{data.5}}</td> {% endcomment %}
+                    <td>{{data.6}}</td>
+                    <td>{{data.7}}</td>
+                    <td>{{data.8 | date}}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h2>Error</h2>
+                {% endif %}
+            </tbody>
+            
+        </table>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,88 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include "apps/header-menu.html" %}
+
+    {% if product_id %}
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="detail_carousel" class="owl-carousel owl-theme">
+                            <div class="item" style="text-align: -webkit-center;">
+                                <img class="w-50" src="{{ product_id.product_image.url }}" alt="{{product_id.product_name}}">
+                            </div>
+                            {% for data in multi_images %}
+                            <div class="item" style="text-align: -webkit-center;">
+                                <img class="w-50" src="{{ data.image.url }}" alt="{{product_id.product_name}}">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="py-3">
+                            <h2>{{product_id.product_name}}</h2><hr>
+                            <p>{{product_id.product_desc | safe}}</p>
+                            <strong>Price: </strong>
+                            <span>{{product_id.product_price}}</span>
+                        </div>
+                        <div class="py3 text-center">
+                            <form action="{% url 'add-to-cart' %}" method="post">
+                                {% csrf_token %}
+                                <input hidden type="text" name="product_id" value="{{product_id.id}}">
+                                <input hidden type="text" name="quantity" value="1">
+                               {% comment %} Qty <select class="me-2" name="quantity" id="">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select> {% endcomment %}
+                                <input type="submit" class="add_to_cart" name="submit" value="Add To Cart" >
+                                <a type="submit" class="btn_buy" href="{% url 'checkout-single' order_id=product_id.id prd_slug=product_id.slug %}">Buy Now</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+<!--releted product-->
+    <section style="background-color:#f5e6f3;">
+        <h2 class="py-4 ms-5" style="letter-spacing:6px;font-weight:700;text-transform:uppercase;">similar product</h2>
+        <div class="row text-center px-5">
+            {% if releted_prd %}
+              {% for data in releted_prd %}
+              <div class="col-6 col-sm-6 col-md-4 col-lg-2 mb-2 p-1 text-center">
+                 <a href="{% url 'detail' pk=data.id prd_slug=data.slug%}">
+                 <div class="card box h-100 p-3">
+                    <div class="img_box">
+                       <figure>
+                        <img class="w-100" src="{{data.product_image.url}}" alt="{{data.product_name}}">
+                       </figure>
+                    </div>
+                    <div class="detail-box">
+                       <h2 class="text-dark fs-6">{{data.product_name}}</h2>
+                       <h6 class="text-dark">Rs. <span>{{data.product_price}}</span></h6>
+                    </div>
+                    <div class="show_details">
+                       <div class="option">
+                          <a class="product_view_btn" href="{% url 'detail' pk=data.id prd_slug=data.slug %}">VIEW</a>
+                       </div>
+                    </div>
+                 </div>
+                 </a>
+              </div>
+              {% endfor %} 
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock content %}

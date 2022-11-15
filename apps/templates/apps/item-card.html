@@ -1,0 +1,40 @@
+{% load static %}
+<div class="row">
+    {% if product_data %}
+      {% for data in product_data %}
+      <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+         <a href="{% url 'detail' pk=data.id prd_slug=data.slug%}">
+         <div class="card box h-100 text-center">
+            <div class="img_box">
+               <img src="{{data.product_image.url}}" alt="{{data.product_name}}">
+            </div>
+            <div class="detail-box">
+               <h2 class="text-dark fs-6">{{data.product_name}}</h2>
+               <h6 class="text-dark">Rs. <span>{{data.product_price}}</span></h6>
+            </div>
+            <div class="show_details">
+               <div class="option">
+                  <a class="product_view_btn" href="{% url 'detail' pk=data.id prd_slug=data.slug %}">VIEW</a>
+               </div>
+            </div>
+         </div>
+         </a>
+      </div>
+      {% endfor %} 
+      {% else %}
+         <div class="mt-5 ms-5">
+            {% if search_bar %}
+               <p>Your search - <strong>{{search_bar}}</strong> - did not match any books.</p> 
+               Suggestions:
+                  <ul>
+                     <li>Make sure that all words are spelled correctly.</li>
+                     <li>Try different keywords.</li>
+                     <li>Try more general keywords.</li>
+                     <li>Try fewer keywords.</li>
+                  </ul>
+            {% else %}
+            <h4 class="text-center">Book Not Found</h4>
+            {% endif %}
+         </div>
+    {% endif %}
+</div>

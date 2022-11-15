@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <!-- Basic -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!-- Mobile Metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <!-- Site Metas -->
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="shortcut icon" href="#" type="">
+      <title>{% block title %}{% endblock %}</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+      <!-- Custom styles for this template -->
+      <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+      <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'css/owl.theme.green.min.css' %}">
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+      <style>
+         {% block style %}{% endblock style %}
+      </style>
+   </head class="body">
+   <body>
+    {% include "apps/header.html" %}
+
+        {% block content %}
+
+        {% endblock content %}
+    {% include "apps/footer.html" %}
+
+   <!-- jQery -->
+ <!-- bootstrap js -->
+ <script src="{% static 'js/bootstrap.min.js' %} "></script>
+ <!-- custom js -->
+ <script src="{% static 'js/custom.js' %} "></script>
+</body>
+</html>
+

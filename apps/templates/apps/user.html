@@ -1,0 +1,32 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+{% include "apps/header-menu.html" %}
+
+{% comment %} {% include 'slider.html' %} {% endcomment %}
+<!-- product section -->
+
+<!--message-->
+{% include "apps/message.html" %}
+
+
+<section id="demo" class="product_section mt-4">
+   {% comment %} <h1 class="text-center">Our <span class="text-danger font-weight-bold">Products</span></h1> {% endcomment %}
+   <div class="container-fluid">
+      <div class="row gy-3">
+         
+         <div class="col-md-3">
+            
+            {% include 'apps/left-nav-sidebar.html' %}
+
+         </div>
+
+         <div class="col-md-9">
+            
+            {% include 'apps/item-card.html' %}
+
+         </div>       
+      </div>
+   </div>
+</section>
+{% endblock  %}

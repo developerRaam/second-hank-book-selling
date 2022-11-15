@@ -1,0 +1,49 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include "apps/header-menu.html" %}
+{% include 'apps/slider.html' %}
+<!-- product section -->
+
+<section id="demo" class="product_section">
+   {% comment %} <h1 class="text-center">Our <span class="text-danger font-weight-bold">Products</span></h1> {% endcomment %}
+   <div class="container-fluid">
+      {% if product_data or category %}
+         {% for cat in category %}
+         <h2 class="py-4 ms-5" style="letter-spacing:6px;font-weight:700;text-transform:uppercase;">{{cat.name}}</h2>
+            <div class="bg-gradient px-3 pt-2" style="background-color:#f5e6f3;">
+               <div class="row">
+                  {% for data in product_data %}
+                     {% if data.categoryId.id == cat.id%}
+                     <div class="col-6 col-sm-6 col-md-4 col-lg-2 mb-2 p-1 text-center">
+                        <a href="{% url 'detail' pk=data.id prd_slug=data.slug %}">
+                        <div class="card box h-100">
+                           <div class="img_box">
+                              <img src="{{data.product_image.url}}" alt="{{data.product_name}}">
+                           </div>
+                           <div class="detail-box">
+                              <h2 class="text-dark fs-6">{{data.product_name}}</h2>
+                              <h6 class="text-dark">Rs. <span>{{data.product_price}}</span></h6>
+                           </div>
+                           <div class="show_details">
+                              <div class="option">
+                                 <a class="product_view_btn" href="{% url 'detail' pk=data.id prd_slug=data.slug %}">VIEW</a>
+                              </div>
+                           </div>
+                        </div>
+                        </a>
+                     </div>
+                     {% endif %}
+                  {% endfor %}
+               </div>
+            </div>
+         {% endfor %} 
+      {% else %}
+            <h3 class="text-center">Product not found</h3>
+      {% endif %}
+   </div>
+</section>
+
+ <!-- end subscribe section -->
+{% endblock content %}

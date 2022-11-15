@@ -1,0 +1,35 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="container py-3">
+        {% if user_profile %}
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 p-0 card py-2">
+                <div class="px-3">
+                    <h4>User Profile </h4>
+                    <p class="text-capitalize"><span class="text-info">Name :</span> <strong>{{user_profile.first_name}} {{user_profile.last_name}}</strong></p>
+                    <p><span class="text-info">Mobile :</span> {{user_profile.mobile}}</p>
+                    <p><span class="text-info">Email :</span> {{user_profile.email}}</p>
+                    <div class="w-100 text-end">
+                        <a class="btn btn-outline-success" href="#">Edit</a>
+                    </div>
+                </div><hr>
+                <div class="px-3">
+                    <h4>Address</h4>
+                    <address>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam illum dolore voluptatem ut quasi eum, beatae, quod officia harum,
+                    </address>
+                    <div class="w-100 text-end">
+                        <a class="btn btn-outline-success" href="3">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}

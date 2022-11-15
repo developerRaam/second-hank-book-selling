@@ -1,0 +1,63 @@
+{% load static %}
+    <!-- header section strats -->
+    <header class="header_section bg-light sticky-top">
+       <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <div class="container-fluid">
+               <a class="text-dark" style="font-size:25px" href="/"><h2 style="font-size:15px; font-weight:700">Second Hand <br>Book Selling</h2></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                
+                <form class="d-flex w-100 mx-4" action="{% url 'search' %}" method="get">
+                  <input class="form-control search_bar" id="search" name="q" type="search" value="{{search_bar}}" placeholder="Search">
+                  
+                  <button id="search_btn" class="btn btn-outline-success search_btn" type="submit">
+                    <img class="w-50" src="{% static 'images/icon/search.png' %}" alt="">
+                  </button>
+
+                </form>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                  {% comment %} <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li> {% endcomment %}
+                  {% if customer_name is None %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login" >Login</a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{customer_name}}
+                      </span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="/ordered">Your Order</a>
+                      <li><a class="dropdown-item" href="/user">Shoping</a></li>
+                      <li><a class="dropdown-item" href="/user-account">Account</a></li>
+                      <li><a class="dropdown-item" href="/change-password">Change Password</a></li>
+                      <li><a class="dropdown-item" href="/cart">Cart</a></li>
+                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link cart" href="/cart"><img src="{% static 'images/icon/cart.ico' %}" alt=""></a>
+                      {% if cart_count %}
+                      <a class="nav-link cart_value" href="/cart">
+                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded" style="font-size:12px">{{cart_count}}</span>
+                      </a>
+                      {% else %}
+                      <a class="nav-link cart_value" href="/cart">
+                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded" style="font-size:12px">0</span>
+                      </a>
+                      {% endif %}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+       </div>
+    </header>
+    <!-- end header section -->

@@ -1,0 +1,55 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- message -->
+{% include "apps/message.html" %}
+
+<section>
+    <div class="container py-3">
+        <h2>Shoping Cart</h2>
+        {% if cart_data %}
+        <div class="w-100 text-end">
+            <a class="btn btn-warning my-1" href="/checkout-multiple">Proceed to buy</a>
+        </div>
+        {% endif %}
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th>Images</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for data in cart_data %}
+                <tr class="text-center">
+                    <td><a href="{% url 'detail' pk=data.product_id_id prd_slug=data.product_id.slug %}">
+                        <img height="70" src="{{data.product_id.product_image.url}}" alt="">
+                    </a></td>
+                    <td>{{data.product_id.product_name}}</td>
+                    <td><a class="btn btn-outline-dark" href="{% url 'qty-minus' user_id=user_id item_id=data.product_id_id %}">-</a> {{data.quantity}} 
+                        <a class="btn btn-outline-dark" href="{% url 'qty-add' user_id=user_id item_id=data.product_id_id %}">+</a>
+                    </td>
+                    <td>
+                    <script>
+                        document.write({{data.product_id.product_price }} * {{data.quantity}})
+                    </script>
+                    </td>
+                    <td><a class="badge btn-danger" href="{% url 'delete-from-cart' item_id=data.product_id_id %}">Delete</a></td>
+                </tr>
+                {% empty %}
+                    <h5>Data not found</h5>
+                {% endfor %}
+                
+            </tbody>
+            
+            
+        </table>
+    </div>
+</section>
+
+{% endblock content %}

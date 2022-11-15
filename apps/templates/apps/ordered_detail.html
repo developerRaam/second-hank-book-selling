@@ -1,0 +1,68 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="container py-3">
+        {% if order_item %}
+        <div class="row">
+            <div class="col-md-6">
+                <div>
+                    <a href="{% url 'detail' pk=product.id prd_slug=product.slug %}">
+                        <figure class="text-center">
+                            <img class="w-100" src="/images/{{product.product_image}}" alt="{{product.product_name}}">
+                        </figure>
+                        
+                        
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-2">
+                    <h2 class="text-center">Order Summary</h2>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Product Name</th>
+                            <td>{{product.product_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Qty</th>
+                            <td>{{order_item.quantity}}</td>
+                        </tr>
+                        <tr>
+                            <th>Buyer Name</th>
+                            <td>{{order_master.name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Buyer Mode</th>
+                            <td>{{order_master.payment_mode}}</td>
+                        </tr>
+                        <tr>
+                            <th>Payment Status</th>
+                            <td>{{order_master.payment_status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td>
+                                <address>
+                                    {{order_master.address}}
+                                </address>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Total Price</th>
+                            <td>
+                                <script>
+                                    document.write({{order_item.quantity}} * {{order_item.price}})
+                                </script>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}

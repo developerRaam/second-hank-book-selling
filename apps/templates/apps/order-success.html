@@ -1,0 +1,25 @@
+{% extends 'apps/base.html' %}
+{% load static %}
+{% block content %}
+
+<section>
+    <div class="text-center mt-3">
+        {% if payment_status == 'Credit' %}
+            <h2>Your payment is : <span class="bg-success text-light p-1">Success</span></h2>
+        {% elif payment_status == 'Pending' %}
+            <h2>Your payment is : <span class="bg-warning text-light p-1">Pending</span></h2>
+        {% elif payment_status == 'Failed' %}
+        <h2>Your payment is : <span class="bg-danger text-light p-1">Failed</span></h2>
+        {% endif %}
+    </div>
+</section>
+
+<section>
+    <div class="container">
+            {% if orderSuccess %}
+                {{orderSuccess.name}}
+            {% endif %}
+    </div>
+</section>
+
+{% endblock content %}
