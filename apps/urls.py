@@ -18,6 +18,7 @@ urlpatterns = [
     path("contact/",views.Contact, name="contact"),
     path("cart/",views.CartShow, name="cart"),
     path("user-account/",views.UserAccount, name="user-account"),
+    path("update-profile/",views.UpdateAccount, name="update-account"),
     path("checkout-multiple/",views.CheckoutMultipleOrder, name="checkout-multiple"),
     path("checkout-order/<order_id>/<prd_slug>",views.CheckoutSingleOrder, name="checkout-single"),
     path("add-to-cart/",views.AddToCart, name="add-to-cart"),

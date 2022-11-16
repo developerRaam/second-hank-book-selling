@@ -277,7 +277,44 @@ def UserAccount(request):
     else:
         return redirect('/login')
 
+#======================== Update Account ===============================
+def UpdateAccount(request):
+    if request.session.has_key('user_email'):
+        session = request.session['user_email']
+        customer_name = request.session['customer_name']
+        res = CustomerProfile.objects.get(email=session)
+        cart_count = Cart.objects.all().count()
 
+        context={
+            'user_profile':res,
+            'user_login':session,
+            "customer_name":customer_name,
+            "cart_count":cart_count
+        }
+        if request.method == 'POST':
+            fname = request.POST.get('fname')
+            lname = request.POST.get('lname')
+            mobile = request.POST.get('mobile')
+            
+            print(fname, lname, mobile)
+
+            profile_update = CustomerProfile.objects.get(email=session)
+            profile_update.first_name=fname
+            profile_update.last_name=lname
+            profile_update.mobile=mobile
+            profile_update.save()
+            if profile_update:
+                messages.success(request, "Profile Successfully Updated")
+                return redirect('/user-account')
+            else:
+               messages.success(request, "Profile Updatedation failed")
+               return redirect('/user-account') 
+        else:
+           return render(request, "apps/user-account-update.html",context)
+       
+        return render(request, "apps/user-account-update.html",context)
+    else:
+        return redirect('/login')
 
 #================= Add To Cart =================================
 def AddToCart(request):
