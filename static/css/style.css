@@ -377,29 +377,12 @@ a{
 .cart{
   position: relative;
 }
-.cart_value{
-  position: absolute;
-  margin-top: -50px;
-  margin-left: 10px;
-}
 
-@media (max-width:991px) {
+
+@media (min-width:991px) {
   .cart_value{
-    margin-left: 26.3rem;
-  }
-}
-@media (max-width:769px) {
-  .cart_value{
-    margin-left: 19.2rem;
-  }
-}
-@media (max-width:575px) {
-  .cart_value{
-    margin-left: 13.2rem;
-  }
-}
-@media (max-width:412px) {
-  .cart_value{
-    margin-left: 8.2rem;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -20px;
   }
 }

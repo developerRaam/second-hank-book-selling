@@ -43,16 +43,22 @@
                   </li>
                   {% endif %}
                   <li class="nav-item">
-                    <a class="nav-link cart" href="/cart"><img src="{% static 'images/icon/cart.ico' %}" alt=""></a>
+                    
                       {% if cart_count %}
-                      <a class="nav-link cart_value" href="/cart">
-                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded" style="font-size:12px">{{cart_count}}</span>
+                      <a class="nav-link" href="/cart">
+                          <img src="{% static 'images/icon/cart.ico' %}" alt="">
+                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded cart_value" style="font-size:12px">{{cart_count}}</span>
+                        
                       </a>
                       {% else %}
-                      <a class="nav-link cart_value" href="/cart">
-                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded" style="font-size:12px">0</span>
+                      <a class="nav-link" href="/cart">
+                          <img src="{% static 'images/icon/cart.ico' %}" alt="">
+                          <span class="bg-danger text-white p-1 pt-0 pb-0 rounded cart_value" style="font-size:12px">0</span>
                       </a>
                       {% endif %}
+                    
+                    </a>
+                      
                   </li>
                 </ul>
               </div>
