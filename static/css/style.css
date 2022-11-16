@@ -385,22 +385,21 @@ a{
 
 @media (max-width:991px) {
   .cart_value{
-    position: absolute;
-    margin-top: -50px;
     margin-left: 26.3rem;
   }
 }
 @media (max-width:769px) {
   .cart_value{
-    position: absolute;
-    margin-top: -50px;
     margin-left: 19.2rem;
   }
 }
 @media (max-width:575px) {
   .cart_value{
-    position: absolute;
-    margin-top: -50px;
     margin-left: 13.2rem;
+  }
+}
+@media (max-width:412px) {
+  .cart_value{
+    margin-left: 8.2rem;
   }
 }
